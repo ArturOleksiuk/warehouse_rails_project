@@ -40,10 +40,13 @@ class SuppliersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy supplier" do
+  
+    supplier = Supplier.create!(company_name: "Empty Company", name: "Test", email: "test@del.com", phone: "123")
+  
     assert_difference("Supplier.count", -1) do
-      delete supplier_url(@supplier)
+      delete supplier_url(supplier) # Видаляємо саме його
     end
 
-    assert_redirected_to suppliers_url
+    assert_redirected_to suppliers_url(locale: :uk)
   end
 end
