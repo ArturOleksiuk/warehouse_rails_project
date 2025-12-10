@@ -18,10 +18,16 @@ class SuppliersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create supplier" do
     assert_difference("Supplier.count") do
-      post suppliers_url, params: { supplier: { company_name: @supplier.company_name, contact_name: @supplier.contact_name, email: @supplier.email, phone: @supplier.phone } }
+      post suppliers_url, params: { 
+        supplier: { 
+          company_name: "New Unique Company", 
+          email: "new@test.com", 
+          phone: "1234567890" 
+        } 
+      }
     end
 
-    assert_redirected_to supplier_url(Supplier.last)
+    assert_redirected_to supplier_url(Supplier.last, locale: :uk)
   end
 
   test "should show supplier" do
@@ -35,16 +41,19 @@ class SuppliersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update supplier" do
-    patch supplier_url(@supplier), params: { supplier: { company_name: @supplier.company_name, contact_name: @supplier.contact_name, email: @supplier.email, phone: @supplier.phone } }
-    assert_redirected_to supplier_url(@supplier)
+    patch supplier_url(@supplier), params: { 
+      supplier: { 
+        company_name: @supplier.company_name, 
+        email: @supplier.email, 
+        phone: @supplier.phone 
+      } 
+    }
+    assert_redirected_to supplier_url(@supplier, locale: :uk)
   end
 
   test "should destroy supplier" do
-  
-    supplier = Supplier.create!(company_name: "Empty Company", name: "Test", email: "test@del.com", phone: "123")
-  
     assert_difference("Supplier.count", -1) do
-      delete supplier_url(supplier) # Видаляємо саме його
+      delete supplier_url(@supplier)
     end
 
     assert_redirected_to suppliers_url(locale: :uk)
