@@ -1,0 +1,32 @@
+<%= form_with(model: category, local: true) do |form| %>
+  
+  <% if category.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>Виправте помилки:</h4>
+      <ul>
+        <% category.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="mb-3">
+        <%= form.label :name, "Назва категорії", class: "form-label" %>
+        <%= form.text_field :name, class: "form-control", placeholder: "Наприклад: Електроніка" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :description, "Опис", class: "form-label" %>
+        <%= form.text_area :description, class: "form-control", rows: 4, placeholder: "Короткий опис категорії..." %>
+      </div>
+
+      <div class="mt-4">
+        <%= form.submit "Зберегти категорію", class: "btn btn-success" %>
+        <%= link_to "Скасувати", categories_path, class: "btn btn-link text-decoration-none" %>
+      </div>
+    </div>
+  </div>
+<% end %>

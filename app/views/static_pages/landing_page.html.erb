@@ -1,0 +1,42 @@
+<div class="container py-4">
+  <div class="p-5 mb-4 bg-light rounded-3 shadow-sm border">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold text-primary">📦 <%= t('landing.hero.title') %></h1>
+      <p class="col-md-8 fs-4">
+        <%= t('landing.hero.description') %>
+      </p>
+      
+      <div class="mt-4">
+        <% if user_signed_in? %>
+          <%= link_to t('landing.hero.dashboard_button'), static_pages_dashboard_path, class: "btn btn-primary btn-lg px-4 gap-3" %>
+        <% else %>
+          <%= link_to t('landing.hero.login_button'), new_user_session_path, class: "btn btn-primary btn-lg px-4 me-md-2" %>
+          <%= link_to t('landing.hero.signup_button'), new_user_registration_path, class: "btn btn-outline-secondary btn-lg px-4" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row align-items-md-stretch">
+    <div class="col-md-4">
+      <div class="h-100 p-5 text-white bg-dark rounded-3">
+        <h2><%= t('landing.cards.products.title') %></h2>
+        <p><%= t('landing.cards.products.text') %></p>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="h-100 p-5 bg-warning text-dark rounded-3">
+        <h2><%= t('landing.cards.clients.title') %></h2>
+        <p><%= t('landing.cards.clients.text') %></p>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="h-100 p-5 bg-secondary text-white border rounded-3">
+        <h2><%= t('landing.cards.reports.title') %></h2>
+        <p><%= t('landing.cards.reports.text') %></p>
+      </div>
+    </div>
+  </div>
+</div>

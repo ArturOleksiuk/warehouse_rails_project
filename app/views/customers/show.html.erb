@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-info text-dark d-flex justify-content-between align-items-center">
+        <h3 class="mb-0"><%= @customer.name %></h3>
+        <span class="badge bg-light text-dark"><%= @customer.client_type %></span>
+      </div>
+      <div class="card-body">
+        <p><strong>Адреса:</strong><br> <%= @customer.address %></p>
+        
+        <div class="d-flex gap-2 mt-4">
+          <%= link_to "Редагувати", edit_customer_path(@customer), class: "btn btn-warning" %>
+          <%= link_to "До списку", customers_path, class: "btn btn-outline-secondary" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-header bg-light">
+        <h5 class="mb-0">Придбані товари</h5>
+      </div>
+      <% if @customer.products.any? %>
+        <ul class="list-group list-group-flush">
+          <% @customer.products.each do |product| %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <%= link_to product.name, product_path(product), class: "text-decoration-none" %>
+              <span class="badge bg-success"><%= number_to_currency(product.price, unit: "грн", format: "%n %u") %></span>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <div class="card-body text-center text-muted">
+          У цього клієнта ще немає замовлень.
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,78 @@
+# Files in the config/locales directory are used for internationalization and
+# are automatically loaded by Rails. If you want to use locales other than
+# English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t "hello"
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t("hello") %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more about the API, please read the Rails Internationalization guide
+# at https://guides.rubyonrails.org/i18n.html.
+#
+# Be aware that YAML interprets the following case-insensitive strings as
+# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
+# must be quoted to be interpreted as strings. For example:
+#
+#     en:
+#       "yes": yup
+#       enabled: "ON"
+
+en:
+  hello: "Hello world"
+  site_name: "Warehouse System"
+  
+  # Навігація
+  navigation:
+    home: "Home"
+    products: "Products"
+    orders: "Orders"
+    suppliers: "Suppliers"
+    log_in: "Log in"
+    log_out: "Log out"
+    sign_up: "Sign up"
+    profile: "Profile"
+
+  # Товари
+  products:
+    index_title: "List of Products"
+    new_button: "New Product"
+    edit_button: "Edit"
+    delete_button: "Delete"
+    back_button: "Back"
+    # Назви полів таблиці
+    name: "Name"
+    price: "Price"
+    quantity: "Quantity"
+    category: "Category"
+    supplier: "Supplier"
+    user: "Owner"
+
+  # Загальні дії
+  actions:
+    save: "Save"
+    confirm_delete: "Are you sure?"
+  landing:
+    hero:
+      title: "Warehouse Management System"
+      description: "A modern system for automating your warehouse. Manage products, track suppliers, and maintain a customer database in one place."
+      button: "Go to Dashboard"
+    cards:
+      products:
+        title: "Products"
+        text: "Full inventory tracking, categorization, and easy product search in the warehouse."
+      clients:
+        title: "Clients"
+        text: "Maintain a database of your customers and their order history to improve service."
+      reports:
+        title: "Reports"
+        text: "Analyze data on suppliers and warehouse efficiency."

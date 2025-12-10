@@ -1,0 +1,33 @@
+<%= form_with(model: customer, local: true) do |form| %>
+  
+  <% if customer.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>Помилка:</h4>
+      <ul>
+        <% customer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, "Ім'я клієнта / Назва фірми", class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Петро Петренко" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :client_type, "Тип клієнта", class: "form-label" %>
+    <%= form.select :client_type, ['Звичайний', 'VIP', 'Гуртовий', 'Партнер'], {}, { class: "form-select" } %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :address, "Адреса", class: "form-label" %>
+    <%= form.text_area :address, class: "form-control", rows: 3, placeholder: "м. Київ, вул..." %>
+  </div>
+
+  <div class="mt-3">
+    <%= form.submit "Зберегти клієнта", class: "btn btn-primary" %>
+    <%= link_to "Скасувати", customers_path, class: "btn btn-link text-decoration-none" %>
+  </div>
+<% end %>

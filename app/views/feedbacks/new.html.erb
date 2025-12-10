@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow mt-4">
+      <div class="card-body p-4">
+        <h2 class="text-center mb-4">📬 Напишіть нам</h2>
+        
+        <%= form_with scope: :feedback, url: feedbacks_create_path, local: true, data: { turbo: false } do |form| %>
+          
+          <div class="mb-3">
+            <%= form.label :name, "Ваше ім'я", class: "form-label" %>
+            <%= form.text_field :name, class: "form-control", placeholder: "Іван Петренко" %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :email, "Email адреса", class: "form-label" %>
+            <%= form.email_field :email, class: "form-control", placeholder: "name@example.com" %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :message, "Повідомлення", class: "form-label" %>
+            <%= form.text_area :message, class: "form-control", rows: 5, placeholder: "Опишіть вашу проблему або пропозицію..." %>
+          </div>
+
+          <div class="d-grid">
+            <%= form.submit "Надіслати повідомлення", class: "btn btn-primary btn-lg" %>
+          </div>
+          
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="text-center mt-3">
+      <%= link_to "Повернутися назад", root_path, class: "text-decoration-none" %>
+    </div>
+  </div>
+</div>

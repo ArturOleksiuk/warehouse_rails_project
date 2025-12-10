@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h1 class="h3">👥 База Клієнтів</h1>
+    <p class="text-muted">Керуйте списком покупців та їх даними</p>
+  </div>
+  <%= link_to "➕ Новий клієнт", new_customer_path, class: "btn btn-primary" %>
+</div>
+
+<div class="card shadow">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover align-middle mb-0">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col" class="ps-4">Ім'я / Компанія</th>
+            <th scope="col">Тип</th>
+            <th scope="col">Адреса</th>
+            <th scope="col">Замовлень</th>
+            <th scope="col" class="text-end pe-4">Дії</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+            <tr>
+              <td class="ps-4 fw-bold text-primary">
+                <%= link_to customer.name, customer, class: "text-decoration-none" %>
+              </td>
+              <td>
+                <% badge_class = case customer.client_type
+                   when 'VIP' then 'bg-warning text-dark'
+                   when 'Гуртовий' then 'bg-info text-dark'
+                   else 'bg-secondary'
+                   end %>
+                <span class="badge <%= badge_class %>"><%= customer.client_type %></span>
+              </td>
+              <td>
+                <i class="bi bi-geo-alt"></i> <%= truncate(customer.address, length: 25) %>
+              </td>
+              <td>
+                <span class="badge rounded-pill bg-light text-dark border">
+                  <%= customer.products.count %> шт.
+                </span>
+              </td>
+              <td class="text-end pe-4">
+                <div class="btn-group btn-group-sm">
+                  <%= link_to "Ред.", edit_customer_path(customer), class: "btn btn-outline-secondary" %>
+                  <%= link_to "Вид.", customer, data: { turbo_method: :delete, turbo_confirm: "Видалити цього клієнта?" }, class: "btn btn-outline-danger" %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

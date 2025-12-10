@@ -1,0 +1,65 @@
+<div class="mb-4">
+  <h1>👋 Привіт, <%= current_user.email %>!</h1>
+  <p class="text-muted">Ось стан справ на вашому складі на сьогодні.</p>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 mb-5">
+  
+  <div class="col">
+    <div class="card border-primary mb-3 h-100 shadow-sm">
+      <div class="card-header bg-primary text-white">Товарів на складі</div>
+      <div class="card-body text-primary">
+        <h1 class="card-title"><%= Product.count %></h1>
+        <p class="card-text">позицій в базі даних.</p>
+        <%= link_to "Переглянути", products_path, class: "btn btn-sm btn-outline-primary stretched-link" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card border-success mb-3 h-100 shadow-sm">
+      <div class="card-header bg-success text-white">Активних клієнтів</div>
+      <div class="card-body text-success">
+        <h1 class="card-title"><%= Customer.count %></h1>
+        <p class="card-text">зареєстрованих покупців.</p>
+        <%= link_to "Переглянути", customers_path, class: "btn btn-sm btn-outline-success stretched-link" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card border-dark mb-3 h-100 shadow-sm">
+      <div class="card-header bg-dark text-white">Постачальники</div>
+      <div class="card-body text-dark">
+        <h1 class="card-title"><%= Supplier.count %></h1>
+        <p class="card-text">партнерів постачають товари.</p>
+        <%= link_to "Переглянути", suppliers_path, class: "btn btn-sm btn-outline-dark stretched-link" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card border-warning mb-3 h-100 shadow-sm">
+      <div class="card-header bg-warning text-dark">Категорії</div>
+      <div class="card-body text-dark">
+        <h1 class="card-title"><%= Category.count %></h1>
+        <p class="card-text">груп товарів.</p>
+        <%= link_to "Переглянути", categories_path, class: "btn btn-sm btn-outline-warning stretched-link" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-header">
+    Останні надходження
+  </div>
+  <ul class="list-group list-group-flush">
+    <% Product.last(5).reverse.each do |product| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <%= product.name %>
+        <span class="badge bg-secondary"><%= product.created_at.strftime("%d.%m.%Y") %></span>
+      </li>
+    <% end %>
+  </ul>
+</div>

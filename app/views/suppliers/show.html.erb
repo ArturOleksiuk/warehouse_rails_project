@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        <h3 class="mb-0"><%= @supplier.company_name %></h3>
+        <span class="badge bg-secondary">Постачальник</span>
+      </div>
+      <div class="card-body">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <strong>Контактна особа:</strong><br>
+            <%= @supplier.contact_name %>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <strong>Телефон:</strong><br>
+            <%= @supplier.phone %>
+          </div>
+        </div>
+        <div class="mb-3">
+          <strong>Email:</strong><br>
+          <a href="mailto:<%= @supplier.email %>"><%= @supplier.email %></a>
+        </div>
+        
+        <div class="d-flex gap-2 mt-4">
+          <%= link_to "Редагувати", edit_supplier_path(@supplier), class: "btn btn-warning" %>
+          <%= link_to "Назад до списку", suppliers_path, class: "btn btn-outline-secondary" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-header bg-light">
+        <h5 class="mb-0">Товари цього постачальника</h5>
+      </div>
+      <% if @supplier.products.any? %>
+        <ul class="list-group list-group-flush">
+          <% @supplier.products.each do |product| %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                <strong><%= link_to product.name, product_path(product), class: "text-decoration-none text-dark" %></strong>
+                <br>
+                <small class="text-muted">Ціна: <%= product.price %> грн</small>
+              </div>
+              <span class="badge bg-primary rounded-pill"><%= product.quantity %> шт.</span>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <div class="card-body text-center text-muted">
+          Цей постачальник поки що не надав жодного товару.
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
