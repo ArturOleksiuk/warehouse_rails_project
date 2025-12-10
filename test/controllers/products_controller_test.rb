@@ -18,10 +18,18 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create product" do
     assert_difference("Product.count") do
-      post products_url, params: { product: { category_id: @product.category_id, name: @product.name, price: @product.price, quantity: @product.quantity, supplier_id: @product.supplier_id } }
+      post products_url, params: { 
+        product: { 
+          category_id: @product.category_id, 
+          name: "New Unique Product", 
+          price: @product.price, 
+          quantity: @product.quantity, 
+          supplier_id: @product.supplier_id 
+        } 
+      }
     end
 
-    assert_redirected_to product_url(Product.last)
+    assert_redirected_to product_url(Product.last, locale: :uk)
   end
 
   test "should show product" do
@@ -35,8 +43,16 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update product" do
-    patch product_url(@product), params: { product: { category_id: @product.category_id, name: @product.name, price: @product.price, quantity: @product.quantity, supplier_id: @product.supplier_id } }
-    assert_redirected_to product_url(@product)
+    patch product_url(@product), params: { 
+      product: { 
+        category_id: @product.category_id, 
+        name: @product.name, 
+        price: @product.price, 
+        quantity: @product.quantity, 
+        supplier_id: @product.supplier_id 
+      } 
+    }
+    assert_redirected_to product_url(@product, locale: :uk)
   end
 
   test "should destroy product" do
@@ -44,6 +60,6 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
       delete product_url(@product)
     end
 
-    assert_redirected_to products_url
+    assert_redirected_to products_url(locale: :uk)
   end
 end

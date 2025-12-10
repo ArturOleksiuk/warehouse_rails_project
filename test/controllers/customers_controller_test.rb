@@ -18,10 +18,16 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create customer" do
     assert_difference("Customer.count") do
-      post customers_url, params: { customer: { address: @customer.address, client_type: @customer.client_type, name: @customer.name } }
+      post customers_url, params: { 
+        customer: { 
+          address: @customer.address, 
+          client_type: @customer.client_type, 
+          name: "New Unique Customer" 
+        } 
+      }
     end
 
-    assert_redirected_to customer_url(Customer.last)
+    assert_redirected_to customer_url(Customer.last, locale: :uk)
   end
 
   test "should show customer" do
@@ -35,8 +41,14 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update customer" do
-    patch customer_url(@customer), params: { customer: { address: @customer.address, client_type: @customer.client_type, name: @customer.name } }
-    assert_redirected_to customer_url(@customer)
+    patch customer_url(@customer), params: { 
+      customer: { 
+        address: @customer.address, 
+        client_type: @customer.client_type, 
+        name: @customer.name 
+      } 
+    }
+    assert_redirected_to customer_url(@customer, locale: :uk)
   end
 
   test "should destroy customer" do
@@ -44,6 +56,6 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
       delete customer_url(@customer)
     end
 
-    assert_redirected_to customers_url
+    assert_redirected_to customers_url(locale: :uk)
   end
 end
